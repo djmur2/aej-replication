@@ -32,12 +32,12 @@ graph TD
     FIGURE10 --> TAX_TABLE[Tax Results Table\n4_output/Table5.tex]
     FIGUREC10 --> APPENDIX_FIGURE[Appendix Figure\n4_output/FigureC10.png]
     
-    %% Style definitions
-    classDef input fill:#ffcccc,stroke:#333,stroke-width:1px;
-    classDef transformation fill:#ccffcc,stroke:#333,stroke-width:1px;
-    classDef intermediate fill:#ccccff,stroke:#333,stroke-width:1px;
-    classDef analysis fill:#ffffcc,stroke:#333,stroke-width:1px;
-    classDef output fill:#ffccff,stroke:#333,stroke-width:1px;
+    %% Style definitions with better colors
+    classDef input fill:#ffb3ba,stroke:#333,stroke-width:2px;
+    classDef transformation fill:#baffc9,stroke:#333,stroke-width:2px;
+    classDef intermediate fill:#bae1ff,stroke:#333,stroke-width:2px;
+    classDef analysis fill:#ffffba,stroke:#333,stroke-width:2px;
+    classDef output fill:#ffdfba,stroke:#333,stroke-width:2px;
     
     class RAW_CSV,DWT_DATA input;
     class IMPORT,FRAG_SCRIPTS,APPEND,PREPARE_DWT transformation;
@@ -102,33 +102,8 @@ graph TD
   - Analyzes `dnk_fin_swe_nor.dta`
   - Generates `4_output/FigureC10.png`
 
-## Data Lifecycle
-
-1. **Input Stage**:
-   - Raw CSV files (proprietary)
-   - Tax revenue and exchange rate data
-
-2. **Processing Stage**:
-   - Import and conversion to Stata format
-   - Country-specific transformations
-   - Data merging and preparation
-
-3. **Analysis Stage**:
-   - Statistical analysis in Stata
-   - Synthetic difference-in-differences in R
-
-4. **Output Stage**:
-   - Tables in LaTeX format
-   - Figures in PNG format
-
 ## Data Dependencies
 
 - `Table3_TableC2_Table4_TableC1_Figure1.do` depends on `dnk_fin_swe_nor.dta`
 - `Figure10_Table5_T.R` depends on `Data_Tax.dta`
 - `FigureC10.do` depends on `dnk_fin_swe_nor.dta`
-
-## Data Security Notes
-
-- The raw data files contain proprietary information
-- Processed data files (`2_final_data/`) contain derived information that may still be proprietary
-- Output files (`4_output/`) contain aggregated results that can be shared

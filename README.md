@@ -1,16 +1,8 @@
-# # Replication Package: The Big Short (Interest): Closing the Loopholes in the Dividend-Withholding Tax
+# Replication Package: The Big Short (Interest)
 
 Authors: Elisa Casi, Evelina Gavrilova, David Murphy, and Floris Zoutman
 
 This repository contains the replication package for the paper "The Big Short (Interest): Closing the Loopholes in the Dividend-Withholding Tax" published in the American Economic Journal.
-
-## Key Documentation
-
-- [DATA_ACQUISITION.md](DATA_ACQUISITION.md): Instructions for obtaining and processing proprietary data
-- [DATA_CATALOG.md](DATA_CATALOG.md): Comprehensive catalog of all data files and variables
-- [DATA_FLOW.md](DATA_FLOW.md): Detailed data flow diagram and architecture
-- [SCRIPT_DEPENDENCIES.md](SCRIPT_DEPENDENCIES.md): Script dependencies and execution order
-- [TESTING_GUIDE.md](TESTING_GUIDE.md): Step-by-step guide for testing the replication package
 
 ## Overview
 
@@ -24,7 +16,7 @@ This paper studies how closing loopholes in dividend withholding taxation affect
 - `2_final_data/`: Directory for transformed data (proprietary, not included)
 - `3_analysis_code/`: R and Stata scripts for analysis and figure/table generation
 - `4_output/`: Output files including figures, tables, and tex files
-- `ado/`: Stata library/package directory (contains required custom Stata packages)
+- `ado/`: Stata library/package directory with all required packages
 - `requirements/`: Requirements files for software dependencies
 
 ## Data Sources
@@ -38,26 +30,40 @@ This replication package uses data from the following sources:
 2. **Dividend Withholding Tax Revenue Data**: From national tax authorities
    - Located in `0_raw_data/DWT Revenue Data/`
 
-### Proprietary Data
-
-Much of the raw data used in this analysis is proprietary. To fully replicate the study, researchers will need to:
-
-1. Obtain access to Compustat and Markit databases
-2. Extract country-specific data for the European countries in the study
-3. Save these files as country-code CSV files (e.g., `dnk.csv` for Denmark) in the `0_raw_data/` directory
+See [DATA_ACQUISITION.md](DATA_ACQUISITION.md) for detailed instructions on obtaining and processing the proprietary data.
 
 ## Software Requirements
 
 This replication package uses the following software:
 
 1. **Stata** (version 15 or higher)
-   - Required packages are included in the `ado/` directory
+   - Required packages are included in the `ado/` directory:
+     - `reghdfe`: For fixed-effects regression
+     - `did_imputation`/`did_switching`: For difference-in-differences analysis
+     - `estout`/`esttab`: For table creation
+     - `coefplot`: For coefficient plots
+     - `ftools`: For data manipulation
+   
+   While we include these packages in the `ado/` directory, some dependencies might be missing. If you encounter errors, install the complete packages:
+   ```stata
+   ssc install reghdfe
+   ssc install estout
+   ssc install coefplot
+   ssc install ftools
+   ```
    
 2. **R** (version 4.0 or higher)
-   - Required packages are listed in `requirements/r_requirements.txt`
-
-3. **Python** (version 3.8 or higher, optional)
-   - Required packages are listed in `requirements/python_requirements.txt`
+   - Required packages:
+     - `synthdid`: For synthetic difference-in-differences analysis
+     - `ggplot2`: For plotting
+     - `haven`: For reading Stata files
+     - `gginnards`: For modifying ggplots
+     - `stargazer`: For table creation
+   
+   Install these packages with:
+   ```r
+   install.packages(c("synthdid", "ggplot2", "haven", "gginnards", "stargazer"))
+   ```
 
 ## Replication Workflow
 
@@ -65,17 +71,14 @@ Follow these steps to replicate the results:
 
 ### 1. Setup
 
-1. Install required software (Stata, R, Python)
-2. Install required packages:
-   - R: `install.packages(readLines("requirements/r_requirements.txt"))`
-   - Python: `pip install -r requirements/python_requirements.txt`
-3. Set the base path in the configuration files:
-   - For Stata: Edit `config.do`
-   - For R: Edit `config.R`
+1. Clone this repository
+2. Set the base path in the configuration files:
+   - For Stata: Edit `1_transformation_code/config.do`
+   - For R: Edit `3_analysis_code/config.R`
 
 ### 2. Data Preparation
 
-1. Place the proprietary data files in the `0_raw_data/` directory
+1. Place the proprietary data files in the `0_raw_data/` directory (see DATA_ACQUISITION.md)
 2. Run the data transformation code:
    ```
    cd 1_transformation_code/
@@ -84,51 +87,28 @@ Follow these steps to replicate the results:
 
 ### 3. Analysis
 
-1. Run the analysis code for tables and figures:
-   ```
-   cd 3_analysis_code/
-   stata -b do Table3_TableC2_Table4_TableC1_Figure1.do
-   Rscript Figure10_Table5_T.R
-   stata -b do FigureC10.do
-   ```
-
-2. Check the results in the `4_output/` directory
-
-## Description of Code Files
-
-### Transformation Code
-
-- `0_alltodos_code.do`: Master script that runs all transformation steps
-- `1_import_data.do`: Imports raw CSV data and saves as Stata files
-- `4_appending.do`: Combines data from multiple countries
-- `frag_*_*.do`: Country-specific transformation fragments
-
-### Analysis Code
-
-- `Table3_TableC2_Table4_TableC1_Figure1.do`: Creates main tables and figures
-- `Figure10_Table5_T.R`: Creates Figure 10 and Table 5 using synthetic difference-in-differences
-- `FigureC10.do`: Creates Figure C10 in the appendix
-- `Preparing_DWTRevenueData.do`: Prepares dividend withholding tax revenue data
-
-## Test Scripts
-
-To validate the replication, run:
+Run the analysis code for tables and figures:
 ```
-cd tests/
-./run_tests.sh
+cd 3_analysis_code/
+stata -b do Table3_TableC2_Table4_TableC1_Figure1.do
+Rscript Figure10_Table5_T.R
 ```
 
-This will check that all outputs match expected results.
+For detailed testing instructions, see [TESTING_GUIDE.md](TESTING_GUIDE.md).
+
+## Documentation Files
+
+- [DATA_ACQUISITION.md](DATA_ACQUISITION.md): Instructions for obtaining and processing proprietary data
+- [DATA_CATALOG.md](DATA_CATALOG.md): Catalog of all data files and variables
+- [DATA_FLOW.md](DATA_FLOW.md): Data flow diagram and architecture
+- [SCRIPT_DEPENDENCIES.md](SCRIPT_DEPENDENCIES.md): Script dependencies and execution order
+- [TESTING_GUIDE.md](TESTING_GUIDE.md): Step-by-step guide for testing
 
 ## Contact
 
-For questions about this replication package, please contact the authors:
+For questions about this replication package, please contact:
 
-- David Murphy: [email]
-- Floris Zoutman: [email]
-- Elisa Casi: [email]
-- Evelina Gavrilova: [email]
-
-## License
-
-This code is provided under [LICENSE]. The data is subject to the terms and conditions of the data providers.
+- David Murphy: [REPLACE WITH EMAIL]
+- Floris Zoutman: [REPLACE WITH EMAIL]
+- Elisa Casi: [REPLACE WITH EMAIL]
+- Evelina Gavrilova: [REPLACE WITH EMAIL]
