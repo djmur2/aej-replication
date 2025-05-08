@@ -1,14 +1,12 @@
-*for  PC users
-version 15
-set more off
-	
+*********************************************************************
+***** Replication code for 
+***** The Big Short (Interest): 
+***** Closing the Loopholes in the Dividend-Withholding Tax
+***** Elisa Casi, Evelina Gavrilova, David Murphy and Floris Zoutman
+*********************************************************************
 
-
-*for those of  us with a mac
-global path "/Users/eva/Dropbox/Proj_Taxloop/Submissions/Journal Submissions/AEJ Submission Files/Replication package"	
-
-global data		"${path}0_raw_data/"
-global do		"${path}1_transformation_code/"
+* Load configuration
+do "${path}1_transformation_code/config.do"
 
 
 

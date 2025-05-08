@@ -4,17 +4,9 @@
 ***** Closing the Loopholes in the Dividend-Withholding Tax
 ***** Elisa Casi, Evelina Gavrilova, David Murphy and Floris Zoutman
 **********************************************************************
-version 15
-set more off
 
-
-* Note to replicators:
-* Set the path below to lead to the folder with replication package
-
-global path "/Users/eva/Dropbox/Proj_Taxloop/Submissions/Journal Submissions/AEJ Submission Files/Replication package/"	
-global data		"${path}2_final_data/"
-
-global output	"${path}4_output/"
+* Load configuration
+do "${path}1_transformation_code/config.do"
 clear all 
 
 

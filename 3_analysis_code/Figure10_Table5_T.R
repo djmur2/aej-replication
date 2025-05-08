@@ -5,21 +5,8 @@
 # ***** Elisa Casi, Evelina Gavrilova, David Murphy and Floris Zoutman
 # **********************************************************************
 
-
-rm(list=ls())
-library(synthdid)
-library(ggplot2)
-library(haven)
-library(gginnards)
-library(stargazer)
- 
-
-set.seed(48476352)
-
-#Set the paths
-#Note to replicators: replace the ... with the own path to the replication package
-path_input<-paste("...2_final_data")
-path_output<-paste("...4_output")
+# Load configuration
+source("config.R")
 
 outtable<-NULL
 
