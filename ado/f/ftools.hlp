@@ -1,0 +1,72 @@
+{smcl}
+{* *! version 2.46.0 07jan2022}{...}
+{viewerjumpto "Syntax" "ftools##syntax"}{...}
+{viewerjumpto "Description" "ftools##description"}{...}
+{viewerjumpto "Options" "ftools##options"}{...}
+{viewerjumpto "Remarks" "ftools##remarks"}{...}
+{viewerjumpto "Examples" "ftools##examples"}{...}
+{viewerjumpto "Stored results" "ftools##stored_results"}{...}
+{viewerjumpto "References" "ftools##references"}{...}
+{viewerjumpto "Citation" "ftools##citation"}{...}
+{viewerjumpto "Author" "ftools##author"}{...}
+{viewerjumpto "Acknowledgements" "ftools##acknowledgements"}{...}
+{title:Title}
+
+{p2colset 5 18 23 2}{...}
+{p2col :{hi:ftools} {hline 2}}Faster implementations of common Stata commands{p_end}
+{p2colreset}{...}
+
+{marker syntax}{title:Syntax}
+
+{p 8 15 2}
+{cmd:ftools} {it:subcommand}
+
+{p 8 15 2}
+{it:subcommand} can be either of:
+
+{p 12 15 2}
+{cmd:compile} - compile the Mata functions into an .mlib library
+
+{p 12 15 2}
+{cmd:version} - report current version
+
+{marker description}{...}
+{title:Description}
+
+{pstd}
+{cmd:ftools} is a Stata package that provides faster implementations of
+common Stata commands; the speed gains range from 2x to 20,000x.
+
+{pstd}
+It does this by implementing several efficient Mata routines for working with
+factor variables and unique values. In particular, its fastest method for
+detecting unique values is a novel algorithm (method=hash1) that runs in
+approximately O(N^1.02) time, compared to Stata's O(N log N).
+In practice, when working with 20-25 variables, {cmd:ftools} is 10-20x faster
+than the alternatives.
+
+{pstd}
+Read the full details in the {browse "https://github.com/sergiocorreia/ftools/blob/master/README.md":REAME.md file}.
+
+{marker options}{...}
+{title:Options}
+
+{synoptset 26 tabbed}{...}
+{synopthdr}
+{synoptline}
+{syntab:Main}
+{synopt:{opt format(format)}}specify output format; default is %12.0g{p_end}
+
+{syntab:Advanced}
+{synopt:{opt method(string)}}hashing method used (slow, biject, hash0, hash1, hash2, hash3)}{p_end}
+{synopt:{opt verbose}}enable verbose output{p_end}
+
+{synoptline}
+{p2colreset}{...}
+
+{marker author}{...}
+{title:Author}
+
+{pstd}Sergio Correia{p_end}
+{pstd}Federal Reserve Board{p_end}
+{pstd}sergio.correia@gmail.com{p_end}

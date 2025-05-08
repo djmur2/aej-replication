@@ -108,7 +108,7 @@ For detailed testing instructions, see [TESTING_GUIDE.md](TESTING_GUIDE.md).
 
 For questions about this replication package, please contact:
 
-- David Murphy: [REPLACE WITH EMAIL]
-- Floris Zoutman: [REPLACE WITH EMAIL]
-- Elisa Casi: [REPLACE WITH EMAIL]
-- Evelina Gavrilova: [REPLACE WITH EMAIL]
+- David Murphy: David.Murphy@nhh.no
+- Floris Zoutman: Floris.Zoutman@nhh.no
+- Elisa Casi: Elisa.Casi@nhh.no
+- Evelina Gavrilova-Zoutman: Evelina.Gavrilova-Zoutman@nhh.no
