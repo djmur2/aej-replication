@@ -54,15 +54,31 @@ This replication package uses the following software:
    
 2. **R** (version 4.0 or higher)
    - Required packages:
-     - `synthdid`: For synthetic difference-in-differences analysis
-     - `ggplot2`: For plotting
-     - `haven`: For reading Stata files
-     - `gginnards`: For modifying ggplots
-     - `stargazer`: For table creation
+     - `synthdid` (version 0.0.2): For synthetic difference-in-differences analysis
+     - `ggplot2` (version 3.4.0): For plotting
+     - `haven` (version 2.5.1): For reading Stata files
+     - `gginnards` (version 0.1.1): For modifying ggplots
+     - `stargazer` (version 5.2.3): For table creation
    
    Install these packages with:
    ```r
    install.packages(c("synthdid", "ggplot2", "haven", "gginnards", "stargazer"))
+   ```
+   
+   To install specific versions:
+   ```r
+   # Create a vector of package requirements
+   pkgs <- c("synthdid==0.0.2", "ggplot2==3.4.0", "haven==2.5.1", 
+             "gginnards==0.1.1", "stargazer==5.2.3")
+   
+   # Parse package names and versions
+   pkg_names <- gsub("==.*$", "", pkgs)
+   pkg_versions <- gsub("^.*==", "", pkgs)
+   
+   # Install each package with specific version
+   for(i in seq_along(pkg_names)) {
+     devtools::install_version(pkg_names[i], version=pkg_versions[i])
+   }
    ```
 
 ## Replication Workflow
