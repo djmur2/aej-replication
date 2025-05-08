@@ -1,8 +1,16 @@
-# Replication Package: The Big Short (Interest): Closing the Loopholes in the Dividend-Withholding Tax
+# # Replication Package: The Big Short (Interest): Closing the Loopholes in the Dividend-Withholding Tax
 
 Authors: Elisa Casi, Evelina Gavrilova, David Murphy, and Floris Zoutman
 
 This repository contains the replication package for the paper "The Big Short (Interest): Closing the Loopholes in the Dividend-Withholding Tax" published in the American Economic Journal.
+
+## Key Documentation
+
+- [DATA_ACQUISITION.md](DATA_ACQUISITION.md): Instructions for obtaining and processing proprietary data
+- [DATA_CATALOG.md](DATA_CATALOG.md): Comprehensive catalog of all data files and variables
+- [DATA_FLOW.md](DATA_FLOW.md): Detailed data flow diagram and architecture
+- [SCRIPT_DEPENDENCIES.md](SCRIPT_DEPENDENCIES.md): Script dependencies and execution order
+- [TESTING_GUIDE.md](TESTING_GUIDE.md): Step-by-step guide for testing the replication package
 
 ## Overview
 
